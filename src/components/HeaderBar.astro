@@ -1,0 +1,36 @@
+---
+import SharedHeader from './SharedHeader.astro';
+interface Props {
+	title: string;
+  favicon?: string;
+}
+
+const { title, favicon } = Astro.props;
+---
+<!doctype html>
+<SharedHeader title={title} favicon={favicon}/>
+<body>
+  <div class="header">
+  </div>
+</body>
+</html>
+
+<style>
+  body{
+    padding: 1rem;
+  }
+
+  .header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 108px;
+    display: flex;
+    align-items: center;
+    background: #f05a22;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10;
+  }
+</style>

@@ -1,0 +1,35 @@
+---
+import { getReadingTime } from "../js/utils";
+import QRCode from "react-qr-code";
+const {blogPost} = Astro.props
+
+const formattedTags = blogPost.data.tags.sort().toString().replaceAll(',', ', ')
+---
+<a href={`blog/${blogPost.slug}`}>
+	<div class="blog-card">
+			<p>File Name: {blogPost.data.title}</p>
+			<QRCode
+				size={100}
+				value={`blog/${blogPost.slug}`}
+    	/>
+			<hr/>
+			<p>Location: {`/blog/${blogPost.slug}`}</p>
+			<p>Reading time: {getReadingTime(blogPost.body)} minutes</p>
+			<p>Size: {blogPost.body.length} bytes</p>
+			<p>Tags: {formattedTags}</p>
+	</div>
+</a>
+
+<style>
+.blog-card{
+	background-color: whitesmoke;
+	aspect-ratio: 1/1;
+	max-height: 360px;
+	color: black !important;
+	padding: 1rem;
+}
+
+a{
+	width: auto;
+}
+</style>

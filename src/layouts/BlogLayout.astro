@@ -1,0 +1,56 @@
+---
+import HeaderBar from '../components/HeaderBar.astro';
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+	<HeaderBar title={title} favicon='🌐'/>
+  <body>
+	<aside class="left-aside">
+		<slot name="left-sidebar"/>
+	</aside>
+  <div class="container">
+		<slot />
+	</div>
+	<aside class="right-aside">
+		<slot name="right-sidebar"/>
+	</aside>
+</body>
+</html>
+
+<style>
+  body{
+    display: flex;
+    margin-top: 108px;
+  }
+
+	.container{
+		display: flex;
+		width: 100vw;
+	}
+	.right-aside {
+    display: flex;
+    padding-inline-start: 1.5rem;
+    padding-inline-end: 1rem;
+    right: 0;
+    width: 18rem;
+    background: transparent;
+    position: fixed;
+    padding-top: 1rem;
+  }
+
+  .left-aside {
+    display: flex;
+    padding-inline-start: 1.5rem;
+    padding-inline-end: 1rem;
+    left: 0;
+    width: 18rem;
+    background: transparent;
+    position: fixed;
+    padding-top: 1rem;
+  }
+</style>

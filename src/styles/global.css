@@ -1,0 +1,59 @@
+:root{
+  --pagefind-ui-scale: .8;
+  --pagefind-ui-primary: #034ad8;
+  --pagefind-ui-text: #393939;
+  --pagefind-ui-background: #ffffff;
+  --pagefind-ui-border: #eeeeee;
+  --pagefind-ui-tag: #eeeeee;
+  --pagefind-ui-border-width: 2px;
+  --pagefind-ui-border-radius: 8px;
+  --pagefind-ui-image-border-radius: 8px;
+  --pagefind-ui-image-box-ratio: 3 / 2;
+  --pagefind-ui-font: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, li{
+  font-family: Helvetica, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: 108px;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+  width: min-content;
+}
+
+li {
+  margin-bottom: .5rem;
+  line-height: 1.3;
+}
+
+blockquote{
+  border-left: solid blue 2px;
+  padding-left: 1rem;
+}
+
+.astro-code{
+  padding: 2rem;
+  white-space: pre-wrap;
+}
+
+/* permalink styling */
+.internal {
+  color: red !important;
+}
+.new {
+  color: green !important;
+}
+
+*::selection{
+  color: white;
+  background-color: #f05a22;
+}

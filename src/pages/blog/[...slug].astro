@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import ArticleSideBar from '../../components/ArticleSideBar.astro';
+import NavSideBar from '../../components/NavSideBar.astro'
+import PostTags from '../../components/PostTags.astro';
+import { extractExternalLinks } from '../../js/utils';
+
+// 1. Call `getCollection` inside of `getStaticPaths` to query content
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+	// 2. Create URL paths by using the `slug` property of each content entry
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+// For your template, you can get the entry directly from the prop
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+
+const externalLinks = extractExternalLinks(entry.body);
+---
+<BlogLayout title={entry.data.title}>
+  <NavSideBar
+    slot="left-sidebar"
+  />
+  <ArticleSideBar 
+    title={entry.data.title}
+    tags={entry.data.tags}
+    headings={headings} 
+    externalLinks={externalLinks} 
+    slot="right-sidebar"
+  />
+  <article>
+    <h1 class="title">{entry.data.title}</h1>
+    <PostTags tags={entry.data.tags} />
+    <Content />
+  </article>
+</BlogLayout>
+
+<style>
+  article {
+    margin-left: 2rem;
+    margin-inline-end: 18rem;
+
+    padding-bottom: 1rem;
+    padding-inline: 1.5rem;
+    width: 100%;
+    height: 100%;
+    max-width: 80ch;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  .title{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+  }
+</style>

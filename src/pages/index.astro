@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+import { getCollection } from 'astro:content';
+import NavSideBar from '../components/NavSideBar.astro';
+
+const blogEntries = await getCollection('blog');
+
+// console.info('blogEntries', blogEntries)
+---
+
+<Layout title="ANTI:PATTERN">
+	<script>
+		window.addEventListener('DOMContentLoaded', (event) => {
+			// @ts-ignore
+				new PagefindUI({ 
+					element: "#search", 
+					showSubResults: false,
+					showImages: false, 
+				});
+		});
+	</script>
+	<NavSideBar slot="left-sidebar"/>
+	<div id="search" slot="right-sidebar"></div>
+	<div class="grid" slot="main">
+			{blogEntries.map(blogPostEntry => (
+				<Card blogPost={blogPostEntry}/>
+			))}
+	</div>
+	</div>
+</Layout>
+
+<style>
+	.grid{
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
+  	grid-auto-rows: minmax(100px, auto);
+		justify-items: center;
+	}
+
+	#search{
+		position: fixed;
+		overflow-y: scroll;
+		max-height: calc(100% - 108px);
+		padding-right: 1rem;
+		padding-bottom: 1rem;
+		font-size: 14px;
+	}
+
+</style>
+

@@ -1,0 +1,20 @@
+---
+const {title, favicon = '🛜'} = Astro.props
+
+// style import
+import "../styles/global.css"
+---
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Astro description" />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+  <meta name="viewport" content="height=device-height, 
+                  width=device-width, initial-scale=1.0, 
+                  minimum-scale=1.0, maximum-scale=1.0, 
+                  user-scalable=no, target-densitydpi=device-dpi"/>
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+  <script src="/pagefind/pagefind-ui.js" is:inline></script>
+  <link rel="icon" href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>${favicon}</text></svg>`}/>  
+</head>
